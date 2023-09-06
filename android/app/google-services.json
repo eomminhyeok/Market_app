@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "319226402683",
+    "project_id": "study-fa8cc",
+    "storage_bucket": "study-fa8cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319226402683:android:b11102656e2b14e111cfde",
+        "android_client_info": {
+          "package_name": "com.example.study"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319226402683-a8qm3u44egj8usvvb7ft6l8mrmv5rq7g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrhzubhNA5tTeQc-sR41qip62l6deAwDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319226402683-a8qm3u44egj8usvvb7ft6l8mrmv5rq7g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

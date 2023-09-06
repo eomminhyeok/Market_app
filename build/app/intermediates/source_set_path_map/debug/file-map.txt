@@ -1,0 +1,17 @@
+com.example.study.app-jetified-window-1.0.0-beta04-0 /Users/eomminhyeok/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/res
+com.example.study.app-jetified-play-services-basement-18.1.0-1 /Users/eomminhyeok/.gradle/caches/transforms-3/58aa1384bde170d075503b845cfcf44c/transformed/jetified-play-services-basement-18.1.0/res
+com.example.study.app-jetified-annotation-experimental-1.1.0-2 /Users/eomminhyeok/.gradle/caches/transforms-3/6c0c163cc77ae6c91f9f7dfcd179c29c/transformed/jetified-annotation-experimental-1.1.0/res
+com.example.study.app-jetified-firebase-common-20.3.3-3 /Users/eomminhyeok/.gradle/caches/transforms-3/6f9fa5902813f78de2aefcdfcdb180f7/transformed/jetified-firebase-common-20.3.3/res
+com.example.study.app-core-1.6.0-4 /Users/eomminhyeok/.gradle/caches/transforms-3/7e9df2ac2213a6bd3cef0f2f27870d79/transformed/core-1.6.0/res
+com.example.study.app-jetified-play-services-base-18.0.1-5 /Users/eomminhyeok/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/res
+com.example.study.app-jetified-window-java-1.0.0-beta04-6 /Users/eomminhyeok/.gradle/caches/transforms-3/ae81e06d24c799147c26814497a2a305/transformed/jetified-window-java-1.0.0-beta04/res
+com.example.study.app-debug-7 /Users/eomminhyeok/Desktop/ParkClass/study/android/app/src/debug/res
+com.example.study.app-main-8 /Users/eomminhyeok/Desktop/ParkClass/study/android/app/src/main/res
+com.example.study.app-pngs-9 /Users/eomminhyeok/Desktop/ParkClass/study/build/app/generated/res/pngs/debug
+com.example.study.app-resValues-10 /Users/eomminhyeok/Desktop/ParkClass/study/build/app/generated/res/resValues/debug
+com.example.study.app-rs-11 /Users/eomminhyeok/Desktop/ParkClass/study/build/app/generated/res/rs/debug
+com.example.study.app-mergeDebugResources-12 /Users/eomminhyeok/Desktop/ParkClass/study/build/app/intermediates/incremental/debug/mergeDebugResources/merged.dir
+com.example.study.app-mergeDebugResources-13 /Users/eomminhyeok/Desktop/ParkClass/study/build/app/intermediates/incremental/debug/mergeDebugResources/stripped.dir
+com.example.study.app-merged_res-14 /Users/eomminhyeok/Desktop/ParkClass/study/build/app/intermediates/merged_res/debug
+com.example.study.app-packaged_res-15 /Users/eomminhyeok/Desktop/ParkClass/study/build/cloud_firestore/intermediates/packaged_res/debug
+com.example.study.app-packaged_res-16 /Users/eomminhyeok/Desktop/ParkClass/study/build/firebase_core/intermediates/packaged_res/debug
