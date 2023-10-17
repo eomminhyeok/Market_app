@@ -14,12 +14,9 @@ import 'package:study/View/Buying/biddingPage.dart';
 import 'package:study/View/Sales/S_detailPage.dart';
 import 'package:study/View/Buying/buyingList.dart';
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 
-void main() {
-  runApp(
-    ProviderScope(child:  const MainHome())
-   );
-}
+void main() => runApp(GetMaterialApp(home: MainHome()));
 
 //test
 const seedColor = Color(0xfffff000);
@@ -53,7 +50,7 @@ class _MainHomeState extends State<MainHome> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: '마켓',
       theme: ThemeData(
         primarySwatch: Colors.amber,

@@ -1,6 +1,8 @@
-abstract class ModelBase {
+import 'package:get/get.dart';
+
+abstract class ModelBase extends GetxService{
   late final key;
-  late final userId; // 사용자 ID
+  RxString userId = ''.obs; // 사용자 ID
   ModelBase({
     this.key,
     required this.userId,
@@ -33,15 +35,17 @@ class User extends ModelBase{
   User({
     super.key,
     required super.userId,
-    required this.username,
+    required this.password,
     required this.email,
+    required this.username,
     required this.phonenumber,
     this.boughtProductIds = const [],
     this.postedProductIds = const [],
     this.sellProductIds = const [],
   });
 
-  final String username; // 사용자 이름
+  RxString username = ''.obs; // 사용자 이름
+  RxString password = ''.obs;
   final String email; // 사용자 이메일 주소
   final String phonenumber; // 사용자 전화번호
   final List<int> boughtProductIds; // 구매한 상품의 ID 리스트
@@ -51,6 +55,7 @@ class User extends ModelBase{
   factory User.fromJson(Map<String, dynamic> json) => User(
     key: json["key"],
     userId: json["userId"],
+    password: json["password"],
     username: json["username"],
     email: json["email"],
     phonenumber: json["phonenumber"],
@@ -61,8 +66,9 @@ class User extends ModelBase{
 
   Map<String, dynamic> toJson() => {
     "key": key,
-    "userId": userId,
-    "username": username,
+    "userId": userId.value,
+    "password": password.value,
+    "username": username.value,
     "email": email,
     "phonenumber": phonenumber,
     "boughtProductIds": List<dynamic>.from(boughtProductIds.map((x) => x)),

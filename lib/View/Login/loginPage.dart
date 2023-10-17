@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:study/model.dart';
+import 'package:study/repository/login_repository.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key});
@@ -15,6 +17,8 @@ class _LoginPageState extends State<LoginPage> {
 
   TextEditingController userIdController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  User user = Get.put(User(userId: ''.obs, password: ''.obs, email: '', username: ''.obs, phonenumber: ''));
 
   @override
   void dispose() {
@@ -149,38 +153,12 @@ class _LoginPageState extends State<LoginPage> {
                   height: screenHeight * 0.04,
                   child: ElevatedButton(
                     onPressed: () async {
-                      final userId = userIdController.text;
-                      final password = passwordController.text;
+                      LoginRepository login = LoginRepository();
 
-                      try {
-                        final response = await _dio.post(
-                          'http://10.0.2.2:8000/userinfo/login',
-                          data: {
-                            'user_id': userId,
-                            'password': password,
-                          },
-                          options: Options(
-                            headers: {
-                              'Content-Type': 'application/json',
-                            },
-                          ),
-                        );
+                      user.userId.value = userIdController.text;
+                      user.password.value = passwordController.text;
 
-                        if (response.statusCode == 200) {
-                          final responseData = response.data;
-                          final message = responseData['message'];
-                          print('로그인 성공: $message');
-                          Navigator.pushNamed(context, 'mainPage');
-                        } else if (response.statusCode == 401) {
-                          final responseData = response.data;
-                          final message = responseData['message'];
-                          print('로그인 실패: $message');
-                        } else {
-                          print('서버 오류: ${response.statusCode}');
-                        }
-                      } catch (e) {
-                        print('네트워크 오류: $e');
-                      }
+                      login.loginMethod(user.userId.value, user.password.value, user.username.value, context); //레퍼지토리에서 로그인 메소드 호출
                     },
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
