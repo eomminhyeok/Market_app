@@ -16,38 +16,13 @@ import 'package:study/View/Buying/buyingList.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-void main() => runApp(GetMaterialApp(home: MainHome()));
-
-//test
-const seedColor = Color(0xfffff000);
-
-class MainHome extends StatefulWidget {
-  const MainHome({super.key});
-
-  @override
-  State<MainHome> createState() => _MainHomeState();
+void main() {
+  runApp(MaterialApp(home: MainHome()));
 }
 
-class _MainHomeState extends State<MainHome> {
-  final Dio dio = Dio();
- // test
-  Future<void> fetchDataFromServer() async {
-    try {
-      // Express 서버의 엔드포인트 URL을 여기에 입력
-      final response = await dio.get('http://localhost:8001/');
+const seedColor = Color(0xfffff000);
 
-      if (response.statusCode == 200) {
-        final data = response.data;
-        // 데이터를 처리하거나 화면에 표시하는 로직 추가
-        print(data);
-      } else {
-        print('Request failed with status: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error: $e');
-    }
-  }
-
+class MainHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -64,20 +39,20 @@ class _MainHomeState extends State<MainHome> {
       home: const LoginPage(),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      routes: {
-        'mainPage': (context) => MainPage(),
-        'signPage': (context) => SignPage(),
-        'itemPage': (context) => ItemPage(),
-        'searchPage': (context) => SearchPage(),
-        'loginPage': (context) => LoginPage(),
-        'S_ListPage': (context) => SalesList(),
-        'S_Registration': (context) => SalesRegistration(),
-        'chargingPage': (context) => ChargingPage(),
-        'myPage': (context) => MyPage(),
-        'biddingPage': (context) => BiddingList(),
-        'salesDetail': (context) => SalesDetail(),
-        'buyingList': (context) => BuyingList(),
-      },
+      getPages: [
+        GetPage(name: '/mainPage', page: () => MainPage()),
+        GetPage(name: '/signPage', page: () => SignPage()),
+        GetPage(name: '/itemPage', page: () => ItemPage()),
+        GetPage(name: '/searchPage', page: () => SearchPage()),
+        GetPage(name: '/loginPage', page: () => LoginPage()),
+        GetPage(name: '/S_ListPage', page: () => SalesList()),
+        GetPage(name: '/S_Registration', page: () => SalesRegistration()),
+        GetPage(name: '/chargingPage', page: () => ChargingPage()),
+        GetPage(name: '/myPage', page: () => MyPage()),
+        GetPage(name: '/biddingPage', page: () => BiddingList()),
+        GetPage(name: '/salesDetail', page: () => SalesDetail()),
+        GetPage(name: '/buyingList', page: () => BuyingList()),
+      ],
     );
   }
 }

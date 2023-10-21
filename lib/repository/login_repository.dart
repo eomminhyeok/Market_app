@@ -1,11 +1,20 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:study/model.dart';
 import 'package:get/get.dart';
 
 class LoginRepository {
+  User user = Get.put(User(
+      userId: ''.obs,
+      password: ''.obs,
+      email: '',
+      username: ''.obs,
+      phonenumber: ''));
+
   LoginRepository(); // 생성자
 
-  Future<void> loginMethod(String id, String pw, String username, BuildContext context) async {
+  Future<void> loginMethod(String id, String pw) async {
     final Dio _dio = Dio();
 
     try {
@@ -25,9 +34,9 @@ class LoginRepository {
       if (response.statusCode == 200) {
         final responseData = response.data;
         final message = responseData['message'];
-        print('로그인 성공: $message');
-        username = responseData["username"];
-        Navigator.pushNamed(context, 'mainPage');
+        user.username.value = responseData['user_name'];
+        print('로그인 성공: $message, 유저이름: ${user.username.value}');
+        Get.toNamed('/mainPage');
       } else if (response.statusCode == 401) {
         final responseData = response.data;
         final message = responseData['message'];

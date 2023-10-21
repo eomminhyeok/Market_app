@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'dart:convert';
 import 'package:study/model.dart';
 import 'package:study/repository/login_repository.dart';
 import 'package:get/get.dart';
@@ -18,7 +17,13 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController userIdController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  User user = Get.put(User(userId: ''.obs, password: ''.obs, email: '', username: ''.obs, phonenumber: ''));
+  User user = Get.put(User(
+      userId: ''.obs,
+      password: ''.obs,
+      email: '',
+      username: ''.obs,
+      phonenumber: ''));
+
 
   @override
   void dispose() {
@@ -45,7 +50,8 @@ class _LoginPageState extends State<LoginPage> {
               alignment: Alignment.topCenter,
               child: Text(
                 'Market.',
-                style: TextStyle(fontSize: screenWidth * 0.2, color: Colors.black),
+                style:
+                    TextStyle(fontSize: screenWidth * 0.2, color: Colors.black),
               ),
             ),
             SizedBox(
@@ -79,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                           offset: Offset(0, 3),
                         ),
                       ],
-                    ),                    
+                    ),
                     height: screenHeight * 0.05,
                     width: screenWidth * 0.7,
                     child: TextField(
@@ -92,7 +98,6 @@ class _LoginPageState extends State<LoginPage> {
                         filled: true,
                       ),
                     ),
-
                   ),
                 ),
               ],
@@ -158,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                       user.userId.value = userIdController.text;
                       user.password.value = passwordController.text;
 
-                      login.loginMethod(user.userId.value, user.password.value, user.username.value, context); //레퍼지토리에서 로그인 메소드 호출
+                      login.loginMethod(user.userId.value, user.password.value); //레퍼지토리에서 로그인 메소드 호출      
                     },
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
@@ -186,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: screenHeight * 0.04,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, "signPage");
+                      Get.toNamed('/signPage');
                     },
                     child: FittedBox(
                       fit: BoxFit.scaleDown,

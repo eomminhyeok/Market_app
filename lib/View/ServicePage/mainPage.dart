@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:study/model.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -10,6 +12,13 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  User user = Get.put(User(
+      userId: ''.obs,
+      password: ''.obs,
+      email: '',
+      username: ''.obs,
+      phonenumber: ''));
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -49,7 +58,7 @@ class _MainPageState extends State<MainPage> {
                           width: screenWidth * 1.0,
                           height: screenHeight * 0.1,
                           child: Text(
-                            '박혜성님 20000P',
+                            '${user.username.value}님 환영합니다.\n현재포인트: 20000P',
                             style: TextStyle(fontSize: 23),
                             textAlign: TextAlign.left,
                           ),
@@ -542,7 +551,6 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
       ),
-      
     );
   }
 }
