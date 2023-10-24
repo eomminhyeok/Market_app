@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:study/View/Buying/itemPage.dart';
 import 'package:study/View/Buying/searchPage.dart';
 import 'package:study/View/Login/loginPage.dart';
@@ -13,7 +12,6 @@ import 'package:study/View/ServicePage/myPage.dart';
 import 'package:study/View/Buying/biddingPage.dart';
 import 'package:study/View/Sales/S_detailPage.dart';
 import 'package:study/View/Buying/buyingList.dart';
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 void main() {

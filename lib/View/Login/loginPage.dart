@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 import 'package:study/model.dart';
 import 'package:study/repository/login_repository.dart';
 import 'package:get/get.dart';
@@ -12,7 +11,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final Dio _dio = Dio();
 
   TextEditingController userIdController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -22,7 +20,8 @@ class _LoginPageState extends State<LoginPage> {
       password: ''.obs,
       email: '',
       username: ''.obs,
-      phonenumber: ''));
+      phonenumber: '',
+      points: 0.obs));
 
 
   @override

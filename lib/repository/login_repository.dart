@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:study/model.dart';
 import 'package:get/get.dart';
@@ -10,7 +9,8 @@ class LoginRepository {
       password: ''.obs,
       email: '',
       username: ''.obs,
-      phonenumber: ''));
+      phonenumber: '',
+      points: 0.obs));
 
   LoginRepository(); // 생성자
 
@@ -35,7 +35,9 @@ class LoginRepository {
         final responseData = response.data;
         final message = responseData['message'];
         user.username.value = responseData['user_name'];
-        print('로그인 성공: $message, 유저이름: ${user.username.value}');
+        user.points.value = responseData['points'];
+
+        print('로그인 성공: $message, 유저이름: ${user.username.value}, 포인트: ${user.points.value}');
         Get.toNamed('/mainPage');
       } else if (response.statusCode == 401) {
         final responseData = response.data;

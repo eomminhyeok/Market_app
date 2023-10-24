@@ -17,7 +17,8 @@ class _MainPageState extends State<MainPage> {
       password: ''.obs,
       email: '',
       username: ''.obs,
-      phonenumber: ''));
+      phonenumber: '',
+      points: 0.obs));
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +59,7 @@ class _MainPageState extends State<MainPage> {
                           width: screenWidth * 1.0,
                           height: screenHeight * 0.1,
                           child: Text(
-                            '${user.username.value}님 환영합니다.\n현재포인트: 20000P',
+                            '${user.username.value}님 환영합니다.\n포인트: ${user.points.value}',
                             style: TextStyle(fontSize: 23),
                             textAlign: TextAlign.left,
                           ),
@@ -76,8 +77,7 @@ class _MainPageState extends State<MainPage> {
                                     height: screenHeight * 0.05,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, "loginPage");
+                                        Get.toNamed('loginPage');
                                       },
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
@@ -100,8 +100,7 @@ class _MainPageState extends State<MainPage> {
                                     height: screenHeight * 0.05,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, "chargingPage");
+                                        Get.toNamed('chargingPage');
                                       },
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
@@ -123,7 +122,7 @@ class _MainPageState extends State<MainPage> {
                                     height: screenHeight * 0.05,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        Navigator.pushNamed(context, "myPage");
+                                        Get.toNamed('myPage');
                                       },
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
@@ -158,7 +157,7 @@ class _MainPageState extends State<MainPage> {
                       height: screenHeight * 0.06,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, "S_Registration");
+                          Get.toNamed('S_Registration');
                         },
                         child: FittedBox(
                           fit: BoxFit.scaleDown,
@@ -183,7 +182,7 @@ class _MainPageState extends State<MainPage> {
                       height: screenHeight * 0.06,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, "searchPage");
+                          Get.toNamed('searchPage');
                         },
                         child: FittedBox(
                           fit: BoxFit.scaleDown,
@@ -273,7 +272,7 @@ class _MainPageState extends State<MainPage> {
               fit: BoxFit.scaleDown,
               child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, "ItemPage");
+                  Get.toNamed('ItemPage');
                 },
                 child: Container(
                   decoration: BoxDecoration(
