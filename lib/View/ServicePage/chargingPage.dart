@@ -1,7 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:study/View/ServicePage/mainPage.dart';
-import 'package:study/main.dart';
+import 'package:study/model.dart';
+import 'package:get/get.dart';
+import 'package:study/repository/charging_repository.dart';
 
 class ChargingPage extends StatefulWidget {
   const ChargingPage({super.key});
@@ -11,18 +12,20 @@ class ChargingPage extends StatefulWidget {
 }
 
 class _ChargingPageState extends State<ChargingPage> {
+  TextEditingController pointsController = TextEditingController();
+
+  User user = Get.find<User>();
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: const Text('마일리지 충전'),
       ),
-      body: 
-      SingleChildScrollView(
-        child: 
-        Column(
+      body: SingleChildScrollView(
+        child: Column(
           children: [
             Align(
               alignment: Alignment.topLeft,
@@ -32,23 +35,29 @@ class _ChargingPageState extends State<ChargingPage> {
                 // ignore: prefer_const_constructors
                 child: Text(
                   '  마일리지 충전',
-                style: TextStyle(fontSize: screenWidth * 0.09, color: Colors.black),
-                ),           
+                  style: TextStyle(
+                      fontSize: screenWidth * 0.09, color: Colors.black),
+                ),
               ),
-              ),
-              SizedBox(height: screenHeight * 0.01,),
-              
-              Divider(thickness: 2, height: 1, color: Color.fromARGB(108, 164, 161, 161)),
-
-              SizedBox(height: screenHeight * 0.01,),
+            ),
+            SizedBox(
+              height: screenHeight * 0.01,
+            ),
+            Divider(
+                thickness: 2,
+                height: 1,
+                color: Color.fromARGB(108, 164, 161, 161)),
+            SizedBox(
+              height: screenHeight * 0.01,
+            ),
             FittedBox(
               fit: BoxFit.scaleDown,
-              child:
-              Container(
-                width: screenWidth * 0.95, height: screenHeight * 0.77,
+              child: Container(
+                width: screenWidth * 0.95,
+                height: screenHeight * 0.77,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color : Color.fromARGB(255, 239, 215, 144),
+                  color: Color.fromARGB(255, 239, 215, 144),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.7),
@@ -58,64 +67,79 @@ class _ChargingPageState extends State<ChargingPage> {
                     ),
                   ],
                 ),
-                
-                child: 
-                Column(
+                child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children : [
-                      SizedBox(height: screenHeight * 0.2,),
-                      Flexible(flex : 1, 
-                              child: 
-                              Container(
-                              width: screenWidth * 0.2,
-                              child :
-                              Text('충전금액', style: TextStyle(
+                      children: [
+                        SizedBox(
+                          height: screenHeight * 0.2,
+                        ),
+                        Flexible(
+                          flex: 1,
+                          child: Container(
+                            width: screenWidth * 0.2,
+                            child: Text(
+                              '충전금액',
+                              style: TextStyle(
                                 fontSize: screenWidth * 0.04,
                                 fontWeight: FontWeight.bold,
                               ),
                               textAlign: TextAlign.center,
+                            ),
                           ),
+                        ),
+                        Flexible(
+                          flex: 3,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.4),
+                                  spreadRadius: 3,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: TextField(
+                              controller: pointsController,
+                              decoration: InputDecoration(
+                                hintText: '충전할 금액을 입력하세요',
+                                hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: screenWidth * 0.03),
+                                fillColor: Color.fromARGB(240, 255, 255, 255),
+                                filled: true,
+                              ),
+                            ),
+                            height: screenHeight * 0.04,
                           ),
                         ),
-                      Flexible(flex: 3, child: Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                          BoxShadow(
-                          color: Colors.grey.withOpacity(0.4),
-                          spreadRadius: 3,
-                          blurRadius: 5,
-                           offset: Offset(0, 3),
-                    ),
-                  ],
+                        SizedBox(
+                          width: screenWidth * 0.02,
                         ),
-                        child: TextField(decoration: InputDecoration(
-                          hintText: '충전할 금액을 입력하세요',
-                          hintStyle: TextStyle(
-                            color: Colors.grey,
-                            fontSize: screenWidth * 0.03),
-                          fillColor : Color.fromARGB(240, 255, 255, 255),
-                          filled: true,
-                          ), 
-                        ),height: screenHeight * 0.04,
-                      ),
-                      ),
-                      SizedBox(width: screenWidth * 0.02,),
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          height: screenHeight * 0.04, width: screenWidth * 0.15,
-                          child: ElevatedButton(
-                            onPressed: () => {},
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child:
-                            Text('충전', style: TextStyle(fontSize: 15),
+                        Flexible(
+                          flex: 1,
+                          child: Container(
+                            height: screenHeight * 0.04,
+                            width: screenWidth * 0.15,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                ChargingRepository charge = ChargingRepository();
+                                int addPoints = int.parse(pointsController.text);
+
+                                charge.chargeMethod(user.userId.value, addPoints);
+                              },
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  '충전',
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                              ),
                             ),
-                            ),
-                            ),
-                        ),
+                          ),
                         ),
                       ],
                     ),

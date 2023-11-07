@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:study/View/ServicePage/mainPage.dart';
 
 class SalesRegistration extends StatefulWidget {
   const SalesRegistration({super.key});
@@ -93,133 +92,10 @@ class _SalesRegistrationState extends State<SalesRegistration> {
                 ],
               ),
               SizedBox(height: screenHeight * 0.03),
-              Row(
-                children: [
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      height: screenHeight * 0.04,
-                      width: screenWidth * 0.26,
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          '즉시구매가',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: screenWidth * 0.04,
-                  ),
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.4),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                        ),
-                      ),
-                      height: screenHeight * 0.04,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: screenHeight * 0.015),
-              Row(
-                children: [
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      height: screenHeight * 0.04,
-                      width: screenWidth * 0.26,
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          '경매시작가',
-                          style: TextStyle(fontSize: 18),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: screenWidth * 0.04,
-                  ),
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.4),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                        ),
-                      ),
-                      height: screenHeight * 0.04,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: screenHeight * 0.02,
-              ),
               Container(
                 width: screenWidth * 0.9,
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          '글 내용',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.045,
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                      ],
-                    ),
-                    Container(
-                      child: TextField(
-                        maxLines: null,
-                        keyboardType: TextInputType.multiline,
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 1.0),
-                          ),
-                          hintText: '\n\n\n\n\n\n\n\n\n',
-                          fillColor: Colors.white,
-                          filled: true,
-                        ),
-                      ),
-                      height: null,
-                      width: screenWidth * 0.9,
-                    ),
-                    SizedBox(height: screenHeight * 0.03),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -290,7 +166,132 @@ class _SalesRegistrationState extends State<SalesRegistration> {
                       ],
                     ),
                     SizedBox(
-                      height: screenHeight * 0.01,
+                      height: screenHeight * 0.008,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          '글 내용',
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.045,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ],
+                    ),
+                    Container(
+                      child: TextField(
+                        maxLines: null,
+                        keyboardType: TextInputType.multiline,
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1.0),
+                          ),
+                          hintText: '\n\n\n\n\n\n\n\n\n',
+                          fillColor: Colors.white,
+                          filled: true,
+                        ),
+                      ),
+                      height: null,
+                      width: screenWidth * 0.9,
+                    ),
+                    SizedBox(
+                      height: screenHeight * 0.03,
+                    ),
+                    Row(
+                      children: [
+                        Flexible(
+                          flex: 1,
+                          child: Container(
+                            height: screenHeight * 0.04,
+                            width: screenWidth * 0.21,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                '즉시구매가',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: screenWidth * 0.04,
+                        ),
+                        Flexible(
+                          flex: 1,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.4),
+                                  spreadRadius: 1,
+                                  blurRadius: 2,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                              ),
+                            ),
+                            height: screenHeight * 0.04,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: screenHeight * 0.015),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          flex: 1,
+                          child: Container(
+                            height: screenHeight * 0.04,
+                            width: screenWidth * 0.21,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                '경매시작가',
+                                style: TextStyle(fontSize: 18),
+                                textAlign: TextAlign.left,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: screenWidth * 0.04,
+                        ),
+                        Flexible(
+                          flex: 1,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.4),
+                                  spreadRadius: 1,
+                                  blurRadius: 2,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                              ),
+                            ),
+                            height: screenHeight * 0.04,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: screenHeight * 0.03,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,

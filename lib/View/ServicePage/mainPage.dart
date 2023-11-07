@@ -15,10 +15,12 @@ class _MainPageState extends State<MainPage> {
   User user = Get.put(User(
       userId: ''.obs,
       password: ''.obs,
-      email: '',
+      email: ''.obs,
       username: ''.obs,
-      phonenumber: '',
-      points: 0.obs));
+      phonenumber: ''.obs,
+      points: 0.obs,
+      address: ''.obs,
+      ));
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,7 @@ class _MainPageState extends State<MainPage> {
                             textAlign: TextAlign.left,
                           ),
                         ),
-                        SizedBox(height: screenHeight * 0.01),
+                        SizedBox(height: screenHeight * 0.01,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [

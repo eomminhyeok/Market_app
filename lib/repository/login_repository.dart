@@ -5,12 +5,14 @@ import 'package:get/get.dart';
 
 class LoginRepository {
   User user = Get.put(User(
-      userId: ''.obs,
-      password: ''.obs,
-      email: '',
-      username: ''.obs,
-      phonenumber: '',
-      points: 0.obs));
+    userId: ''.obs,
+    password: ''.obs,
+    email: ''.obs,
+    username: ''.obs,
+    phonenumber: ''.obs,
+    points: 0.obs,
+    address: ''.obs,
+  ));
 
   LoginRepository(); // 생성자
 
@@ -31,19 +33,19 @@ class LoginRepository {
         ),
       );
 
+      final responseData = response.data;
+      final message = responseData['message'];
+
       if (response.statusCode == 200) {
-        final responseData = response.data;
-        final message = responseData['message'];
         user.username.value = responseData['user_name'];
         user.points.value = responseData['points'];
-
         print('로그인 성공: $message, 유저이름: ${user.username.value}, 포인트: ${user.points.value}');
         Get.toNamed('/mainPage');
-      } else if (response.statusCode == 401) {
-        final responseData = response.data;
-        final message = responseData['message'];
+      } 
+      else if (response.statusCode == 401) {
         print('로그인 실패: $message');
-      } else {
+      } 
+      else {
         print('서버 오류: ${response.statusCode}');
       }
     } catch (e) {

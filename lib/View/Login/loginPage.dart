@@ -11,18 +11,18 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   TextEditingController userIdController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   User user = Get.put(User(
-      userId: ''.obs,
-      password: ''.obs,
-      email: '',
-      username: ''.obs,
-      phonenumber: '',
-      points: 0.obs));
-
+    userId: ''.obs,
+    password: ''.obs,
+    email: ''.obs,
+    username: ''.obs,
+    phonenumber: ''.obs,
+    points: 0.obs,
+    address: ''.obs,
+  ));
 
   @override
   void dispose() {
@@ -162,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                       user.userId.value = userIdController.text;
                       user.password.value = passwordController.text;
 
-                      login.loginMethod(user.userId.value, user.password.value); //레퍼지토리에서 로그인 메소드 호출      
+                      login.loginMethod(user.userId.value, user.password.value); //레퍼지토리에서 로그인 메소드 호출
                     },
                     child: FittedBox(
                       fit: BoxFit.scaleDown,

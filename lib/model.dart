@@ -36,6 +36,7 @@ class User extends ModelBase{
     required this.username,
     required this.phonenumber,
     required this.points,
+    required this.address,
     this.boughtProductIds = const [],
     this.postedProductIds = const [],
     this.sellProductIds = const [],
@@ -44,34 +45,10 @@ class User extends ModelBase{
   RxString username = ''.obs; // 사용자 이름
   RxString password = ''.obs;
   RxInt points = 0.obs;
-  final String email; // 사용자 이메일 주소
-  final String phonenumber; // 사용자 전화번호
+  RxString email; // 사용자 이메일 주소
+  RxString phonenumber; // 사용자 전화번호
+  RxString address;
   final List<int> boughtProductIds; // 구매한 상품의 ID 리스트
   final List<int> postedProductIds; // 등록한 상품의 ID 리스트
   final List<int> sellProductIds; // 판매한 상품의 ID 리스트
-  
-  factory User.fromJson(Map<String, dynamic> json) => User(
-    userId: json["userId"],
-    password: json["password"],
-    username: json["username"],
-    email: json["email"],
-    phonenumber: json["phonenumber"],
-    points: json["points"],
-    boughtProductIds: List<int>.from(json["boughtProductIds"].map((x) => x)),
-    postedProductIds: List<int>.from(json["postedProductIds"].map((x) => x)),
-    sellProductIds: List<int>.from(json["sellProductIds"].map((x) => x)),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "userId": userId.value,
-    "password": password.value,
-    "username": username.value,
-    "email": email,
-    "phonenumber": phonenumber,
-    "points": points.value,
-    "boughtProductIds": List<dynamic>.from(boughtProductIds.map((x) => x)),
-    "postedProductIds": List<dynamic>.from(postedProductIds.map((x) => x)),
-    "sellProductIds": List<dynamic>.from(sellProductIds.map((x) => x)),
-  };
 }
-
