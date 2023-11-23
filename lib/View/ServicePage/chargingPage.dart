@@ -129,7 +129,7 @@ class _ChargingPageState extends State<ChargingPage> {
                                 ChargingRepository charge = ChargingRepository();
                                 int addPoints = int.parse(pointsController.text);
 
-                                charge.chargeMethod(user.userId.value, addPoints);
+                                charge.chargeMethod(user.userId, addPoints);
                               },
                               child: FittedBox(
                                 fit: BoxFit.scaleDown,

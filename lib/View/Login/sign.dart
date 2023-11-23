@@ -18,15 +18,7 @@ class _SignPageState extends State<SignPage> {
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController addressController = TextEditingController();
 
-  User user = Get.put(User(
-      userId: ''.obs,
-      password: ''.obs,
-      email: ''.obs,
-      username: ''.obs,
-      phonenumber: ''.obs,
-      points: 0.obs,
-      address: ''.obs,
-      ));
+  User user = Get.find<User>();
 
   @override
   void dispose() {
@@ -463,15 +455,15 @@ class _SignPageState extends State<SignPage> {
                   Container(
                     child: ElevatedButton(
                       onPressed: () {
-                        user.username.value = userNameController.text;
-                        user.userId.value = userIdController.text;
-                        user.password.value = passwordController.text;
-                        user.email.value = emailController.text;
-                        user.phonenumber.value = phoneNumberController.text;
-                        user.address.value = addressController.text;
+                        user.username = userNameController.text;
+                        user.userId = userIdController.text;
+                        user.password = passwordController.text;
+                        user.email = emailController.text;
+                        user.phonenumber = phoneNumberController.text;
+                        user.address = addressController.text;
 
-                        SignRepository.signMethod(user.username.value, user.userId.value,
-                         user.password.value, user.email.value, user.phonenumber.value, user.address.value);
+                        SignRepository.signMethod(user.username, user.userId,
+                         user.password, user.email, user.phonenumber, user.address);
                       },
 
                       child: FittedBox(

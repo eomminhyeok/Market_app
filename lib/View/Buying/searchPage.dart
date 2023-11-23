@@ -36,7 +36,7 @@ class _SearchPageState extends State<SearchPage> {
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              '아이디',
+                              '게시글',
                               style: TextStyle(fontSize: 18),
                               textAlign: TextAlign.center,
                             ),

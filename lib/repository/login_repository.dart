@@ -4,15 +4,7 @@ import 'package:study/model.dart';
 import 'package:get/get.dart';
 
 class LoginRepository {
-  User user = Get.put(User(
-    userId: ''.obs,
-    password: ''.obs,
-    email: ''.obs,
-    username: ''.obs,
-    phonenumber: ''.obs,
-    points: 0.obs,
-    address: ''.obs,
-  ));
+  User user = Get.find<User>();
 
   LoginRepository(); // 생성자
 
@@ -37,9 +29,9 @@ class LoginRepository {
       final message = responseData['message'];
 
       if (response.statusCode == 200) {
-        user.username.value = responseData['user_name'];
+        user.username = responseData['user_name'];
         user.points.value = responseData['points'];
-        print('로그인 성공: $message, 유저이름: ${user.username.value}, 포인트: ${user.points.value}');
+        print('로그인 성공: $message, 유저이름: ${user.username}, 포인트: ${user.points.value}');
         Get.toNamed('/mainPage');
       } 
       else if (response.statusCode == 401) {

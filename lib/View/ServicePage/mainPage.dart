@@ -12,15 +12,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  User user = Get.put(User(
-      userId: ''.obs,
-      password: ''.obs,
-      email: ''.obs,
-      username: ''.obs,
-      phonenumber: ''.obs,
-      points: 0.obs,
-      address: ''.obs,
-      ));
+  User user = Get.find<User>();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +53,7 @@ class _MainPageState extends State<MainPage> {
                           width: screenWidth * 1.0,
                           height: screenHeight * 0.1,
                           child: Text(
-                            '${user.username.value}님 환영합니다.\n포인트: ${user.points.value}',
+                            '${user.username}님 환영합니다.\n포인트: ${user.points.value}',
                             style: TextStyle(fontSize: 23),
                             textAlign: TextAlign.left,
                           ),

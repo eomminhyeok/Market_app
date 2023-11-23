@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:get/route_manager.dart';
 import 'package:study/model.dart';
 import 'package:get/get.dart';
 

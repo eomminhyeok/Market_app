@@ -4,15 +4,7 @@ import 'package:study/model.dart';
 import 'package:get/get.dart';
 
 class SignRepository {
-  User user = Get.put(User(
-    userId: ''.obs,
-    password: ''.obs,
-    email: ''.obs,
-    username: ''.obs,
-    phonenumber: ''.obs,
-    points: 0.obs,
-    address: ''.obs,
-  ));
+  User user = Get.find<User>();
 
   SignRepository(); // 생성자
 

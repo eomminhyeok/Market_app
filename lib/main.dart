@@ -13,6 +13,7 @@ import 'package:study/View/Buying/biddingPage.dart';
 import 'package:study/View/Sales/S_detailPage.dart';
 import 'package:study/View/Buying/buyingList.dart';
 import 'package:get/get.dart';
+import 'package:study/model.dart';
 
 void main() {
   runApp(MaterialApp(home: MainHome()));
@@ -20,7 +21,13 @@ void main() {
 
 const seedColor = Color(0xfffff000);
 
+
+
 class MainHome extends StatelessWidget {
+  User user = Get.put(User());
+
+  Product product = Get.put(Product());
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
