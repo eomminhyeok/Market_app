@@ -1,2 +1,4 @@
 main filter=lfs diff=lfs merge=lfs -text
 main.dart filter=lfs diff=lfs merge=lfs -text
+.so filter=lfs diff=lfs merge=lfs -text
+.apk filter=lfs diff=lfs merge=lfs -text
