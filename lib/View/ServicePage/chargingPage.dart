@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:study/model.dart';
 import 'package:get/get.dart';
 import 'package:study/repository/charging_repository.dart';
+import 'package:study/repository/image_repository.dart';
 
 class ChargingPage extends StatefulWidget {
   const ChargingPage({super.key});

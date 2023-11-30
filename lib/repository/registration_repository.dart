@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 class RegistrationRepository {
     Product product = Get.find<Product>();
     User user = Get.find<User>();
+    Posts posts = Get.find<Posts>();
 
   RegistrationRepository(); // 생성자
 
