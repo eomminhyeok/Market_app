@@ -14,6 +14,10 @@ class Product extends GetxService {
   Rx<DateTime> expiryTime = DateTime.now().obs;
 }
 
+class Posts extends GetxService {
+  RxList<Map<String, dynamic>> newPosts = <Map<String, dynamic>>[].obs;
+}
+
 class User extends GetxService {
   String userId = '';
   String username = ''; // 사용자 이름

@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:study/model.dart';
 import 'dart:io';
 import 'package:study/repository/registration_repository.dart';
+import 'package:flutter/services.dart';
 
 class SalesRegistration extends StatefulWidget {
   const SalesRegistration({super.key});
@@ -24,6 +25,11 @@ class _SalesRegistrationState extends State<SalesRegistration> {
   TextEditingController bidController = TextEditingController();
   final picker = ImagePicker();
   List<XFile?> multiImage = [];
+  void init() { // 상품등록후 변수 초기화
+    multiImage = [];
+    selectedValue = null;
+    product.images = RxList<XFile?>([]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,19 +127,18 @@ class _SalesRegistrationState extends State<SalesRegistration> {
                             onPressed: () async {
                               multiImage = await picker.pickMultiImage();
                               setState(() {
-                                //multiImage를 통해 갤러리에서 가지고 온 사진들은 리스트 변수에 저장되므로 addAll()을 사용해서 images와 multiImage 리스트를 합쳐줍니다.
-                                if (multiImage != null) {
-                                  if (multiImage!.length > 5) {
-                                    multiImage = multiImage!.sublist(0, 5);
-                                    // 이미지 개수가 2개 이상이면 SnackBar로 경고 메시지 표시
-                                    final snackBar = SnackBar(
-                                      content: Text('이미지는 최대 5개까지 선택할 수 있습니다.'),
-                                      duration: Duration(seconds: 2), // SnackBar의 표시 시간 설정
-                                    );
-                                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                                  }
-                                  product.images.addAll(multiImage); 
+                                if (multiImage.length > 5) {
+                                  multiImage = multiImage.sublist(0, 5);
+                                  // 이미지 개수가 2개 이상이면 SnackBar로 경고 메시지 표시
+                                  final snackBar = SnackBar(
+                                    content: Text('이미지는 최대 5개까지 선택할 수 있습니다.'),
+                                    duration: Duration(
+                                        seconds: 2), // SnackBar의 표시 시간 설정
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
                                 }
+                                product.images.addAll(multiImage);
                               });
                             },
                             child: Icon(
@@ -231,12 +236,15 @@ class _SalesRegistrationState extends State<SalesRegistration> {
                         controller: descriptionController,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(300), // 최대 300자 제한
+                        ],
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderSide:
                                 BorderSide(color: Colors.grey, width: 1.0),
                           ),
-                          hintText: '\n\n\n\n\n\n\n\n\n',
+                          hintText: '최대 300자 입력 가능\n\n\n\n\n\n\n\n\n',
                           fillColor: Colors.white,
                           filled: true,
                         ),
@@ -383,6 +391,10 @@ class _SalesRegistrationState extends State<SalesRegistration> {
                                   value: 'Option 2',
                                   child: Text('48h'),
                                 ),
+                                DropdownMenuItem<String>(
+                                  value: 'Option 3',
+                                  child: Text('10y'),
+                                ),
                               ],
                               onChanged: (String? newValue) {
                                 setState(() {
@@ -390,11 +402,15 @@ class _SalesRegistrationState extends State<SalesRegistration> {
 
                                   product.createdTime.value = DateTime.now();
 
-                                  if(selectedValue == 'Option 1') {
-                                    product.expiryTime.value = (DateTime.now()).add(Duration(hours: 24));
-                                  }
-                                  else if(selectedValue == 'Option 2') {
-                                    product.expiryTime.value = (DateTime.now()).add(Duration(hours: 48));
+                                  if (selectedValue == 'Option 1') {
+                                    product.expiryTime.value = (DateTime.now())
+                                        .add(Duration(hours: 24));
+                                  } else if (selectedValue == 'Option 2') {
+                                    product.expiryTime.value = (DateTime.now())
+                                        .add(Duration(hours: 48));
+                                  } else if (selectedValue == 'Option 3') {
+                                    product.expiryTime.value = (DateTime.now())
+                                        .add(Duration(days: 3652));
                                   }
                                 });
                               },
@@ -432,13 +448,24 @@ class _SalesRegistrationState extends State<SalesRegistration> {
                         product.description.value = descriptionController.text;
                         int price = int.parse(priceController.text);
                         int bid = int.parse(bidController.text);
-                        List<XFile> images = product.images.toList().cast<XFile>();
-                        
+                        List<XFile> images =
+                            product.images.toList().cast<XFile>();
 
-                        RegistrationRepository regist = RegistrationRepository();
-
-                        regist.registrationMethod(product.title.value, product.description.value, 
-                        price, bid, images, product.createdTime.value, product.expiryTime.value);
+                        RegistrationRepository regist =
+                            RegistrationRepository();
+                        if (images.length == 0) {
+                          print("상품이미지는 최소한 한 개 이상이어야합니다.");
+                        } else {
+                          regist.registrationMethod(
+                              product.title.value,
+                              product.description.value,
+                              price,
+                              bid,
+                              images,
+                              product.createdTime.value,
+                              product.expiryTime.value);
+                        }
+                        init();
                       },
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
