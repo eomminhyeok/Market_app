@@ -133,14 +133,14 @@ class _SearchPageState extends State<SearchPage> {
                         
                         posts.keyword.value = titleController.text;
 
-                        if (minController.text != null && // null 체크
+                        if (minController.text != '' && // null 체크
                             minController.text.isNotEmpty) {
                           posts.min.value = int.parse(minController.text);
                         } else {
                           posts.min.value = 0;
                         }
 
-                        if (maxController.text != null &&
+                        if (maxController.text != '' &&
                             maxController.text.isNotEmpty) {
                           posts.max.value = int.parse(maxController.text);
                         } else {
