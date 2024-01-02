@@ -15,7 +15,7 @@ class LoginRepository {
       final response = await _dio.post(
         'http://10.0.2.2:8000/userinfo/login',
         data: {
-          'user_id': id,
+          'userId': id,
           'password': pw,
         },
         options: Options(

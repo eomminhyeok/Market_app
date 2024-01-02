@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:study/model.dart';
 import 'package:get/get.dart';
 import 'package:study/repository/charging_repository.dart';
-import 'package:study/repository/image_repository.dart';
+import 'package:study/View/DialogView/normalDailog.dart';
 
 class ChargingPage extends StatefulWidget {
   const ChargingPage({super.key});
@@ -16,6 +16,8 @@ class _ChargingPageState extends State<ChargingPage> {
   TextEditingController pointsController = TextEditingController();
 
   User user = Get.find<User>();
+  ColorController color = Get.find<ColorController>();
+  NormalDialog normalDialog = NormalDialog();
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +57,10 @@ class _ChargingPageState extends State<ChargingPage> {
               fit: BoxFit.scaleDown,
               child: Container(
                 width: screenWidth * 0.95,
-                height: screenHeight * 0.77,
+                height: screenHeight * 0.35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromARGB(255, 239, 215, 144),
+                  color: Color.fromARGB(255, 176, 175, 173),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.7),
@@ -124,19 +126,76 @@ class _ChargingPageState extends State<ChargingPage> {
                           flex: 1,
                           child: Container(
                             height: screenHeight * 0.04,
-                            width: screenWidth * 0.15,
+                            width: screenWidth * 0.2,
                             child: ElevatedButton(
-                              onPressed: () {
-                                ChargingRepository charge = ChargingRepository();
-                                int addPoints = int.parse(pointsController.text);
+                              onPressed: () async {
+                                // 포인트 충전 여부 확인 다이얼로그
+                                var confirm = await NormalDialog.confirmDialog(
+                                  context,
+                                  '포인트 충전',
+                                  '${pointsController.text}P를 충전하시겠습니까?',
+                                );
 
-                                charge.chargeMethod(user.userId, addPoints);
+                                if (confirm == true) {
+                                  // "네"를 선택한 경우
+                                  ChargingRepository charge =
+                                      ChargingRepository();
+                                  int addPoints =
+                                      int.parse(pointsController.text);
+
+                                  try {
+                                    var res = await charge.chargeMethod(
+                                        user.userId, addPoints);
+
+                                    if (res == 200) {
+                                      // 성공 다이얼로그 표시
+                                      NormalDialog.successDialog(
+                                        context,
+                                        '충전 완료',
+                                        '포인트가 성공적으로 충전되었습니다.',
+                                      );
+                                      pointsController.clear(); // 텍스트 필드 비우기
+                                    } else {
+                                      // 실패 다이얼로그 표시
+                                      NormalDialog.failureDialog(
+                                        context,
+                                        '충전 실패',
+                                        '포인트 충전에 실패하였습니다.',
+                                      );
+                                    }
+                                  } catch (error) {
+                                    // 예외 처리 (예외 발생 시)
+                                    print('Error charging points: $error');
+                                    NormalDialog.errorDialog(
+                                      context,
+                                      '에러',
+                                      '포인트 충전 중 오류가 발생했습니다.',
+                                    );
+                                  }
+                                } else {
+                                  // "아니오"를 선택한 경우 또는 다이얼로그를 닫은 경우
+                                  print('포인트 충전을 취소하였습니다.');
+                                }
                               },
                               child: FittedBox(
-                                fit: BoxFit.scaleDown,
+                                fit: BoxFit.fill,
                                 child: Text(
                                   '충전',
-                                  style: TextStyle(fontSize: 15),
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: color.fontColor.value),
+                                ),
+                              ),
+                              style: ButtonStyle(
+                                minimumSize: MaterialStateProperty.all(Size(
+                                    screenWidth * 0.05, screenHeight * 0.04)),
+                                backgroundColor: MaterialStateProperty.all(
+                                    color.backColor.value),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(7.0),
+                                  ),
                                 ),
                               ),
                             ),

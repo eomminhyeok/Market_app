@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:study/model.dart';
 import 'package:get/get.dart';
 import 'package:study/repository/sign_repository.dart';
+import 'package:study/View/DialogView/basicDailog.dart';
 
 class SignPage extends StatefulWidget {
   const SignPage({Key? key}) : super(key: key);
@@ -462,8 +463,18 @@ class _SignPageState extends State<SignPage> {
                         user.phonenumber = phoneNumberController.text;
                         user.address = addressController.text;
 
-                        SignRepository.signMethod(user.username, user.userId,
-                         user.password, user.email, user.phonenumber, user.address);
+                        if(user.username != '' && user.userId != '' &&
+                        user.password != '' && user.email != '' &&
+                        user.phonenumber != '' && user.address != ''
+                        ){
+                          SignRepository.signMethod(user.username, user.userId,
+                             user.password, user.email, user.phonenumber, user.address);
+                          Get.toNamed('loginPage');
+
+                          BasicDialogClass.basicDialog(context, '회원가입', '회원가입에 성공하였습니다!');
+                        }else{
+                          BasicDialogClass.basicDialog(context, '회원가입', '항목을 모두 채워주세요');
+                        }
                       },
 
                       child: FittedBox(

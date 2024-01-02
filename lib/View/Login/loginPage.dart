@@ -11,6 +11,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  ColorController color = Get.put(ColorController());
+
   TextEditingController userIdController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -155,13 +157,15 @@ class _LoginPageState extends State<LoginPage> {
                       user.password = passwordController.text;
 
                       login.loginMethod(user.userId, user.password); //레퍼지토리에서 로그인 메소드 호출
+                      userIdController.clear();
+                      passwordController.clear();
                     },
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(
                         '로그인',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: color.fontColor.value,
                           fontSize: 20,
                         ),
                       ),
@@ -170,7 +174,12 @@ class _LoginPageState extends State<LoginPage> {
                       minimumSize: MaterialStateProperty.all(
                           Size(screenWidth * 0.05, screenHeight * 0.04)),
                       backgroundColor: MaterialStateProperty.all(
-                          Color.fromRGBO(216, 176, 117, 1)),
+                          color.backColor.value),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                             RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7.0),
+                          ),
+                        ),
                     ),
                   ),
                 ),
@@ -189,8 +198,8 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                         '회원가입',
                         style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
+                          color: color.fontColor.value,
+                          fontSize: 30,
                         ),
                       ),
                     ),
@@ -198,8 +207,13 @@ class _LoginPageState extends State<LoginPage> {
                       minimumSize: MaterialStateProperty.all(
                           Size(screenWidth * 0.05, screenHeight * 0.04)),
                       backgroundColor: MaterialStateProperty.all(
-                          Color.fromRGBO(216, 176, 117, 1)),
-                    ),
+                          color.backColor.value),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7.0),
+                        ),
+                      ),
+                     ),
                   ),
                 ),
               ],

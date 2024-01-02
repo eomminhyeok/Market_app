@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:study/model.dart';
+import 'package:get/get.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({super.key});
@@ -11,6 +13,8 @@ class MyPage extends StatefulWidget {
 class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
+    User user = Get.find<User>();
+
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -67,7 +71,7 @@ class _MyPageState extends State<MyPage> {
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          '회원 이름 : 박혜성',
+                          '회원 이름 : ${user.username}',
                           style: TextStyle(fontSize: 21),
                         ),
                       ),
@@ -88,7 +92,7 @@ class _MyPageState extends State<MyPage> {
                               child: FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
-                                  '현재 마일리지 : 20,000P',
+                                  '현재 마일리지 : ${user.points.value}P',
                                   style: TextStyle(fontSize: 30),
                                   textAlign: TextAlign.start, // 좌측 정렬
                                 ),
@@ -145,7 +149,7 @@ class _MyPageState extends State<MyPage> {
               Container(
                 color: Color.fromARGB(255, 202, 202, 202),
                 width: screenWidth * 0.9,
-                height: 4.5 * (screenWidth * 0.1),
+                height: screenHeight * 0.23,
                 padding: EdgeInsets.fromLTRB(
                     screenWidth * 0.02,
                     screenHeight * 0.02,
@@ -184,7 +188,7 @@ class _MyPageState extends State<MyPage> {
                             height: screenHeight * 0.04,
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, "S_ListPage");
+                                Get.toNamed('sellingList');
                               },
                               child: FittedBox(
                                 fit: BoxFit.scaleDown,
@@ -235,7 +239,7 @@ class _MyPageState extends State<MyPage> {
                             height: screenHeight * 0.04,
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, "biddingPage");
+                                Get.toNamed('biddingList');
                               },
                               child: FittedBox(
                                 fit: BoxFit.scaleDown,
@@ -286,7 +290,7 @@ class _MyPageState extends State<MyPage> {
                             height: screenHeight * 0.04,
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, 'salesDetail');
+                                Get.toNamed('soldListPage');
                               },
                               child: FittedBox(
                                 fit: BoxFit.scaleDown,
@@ -337,7 +341,7 @@ class _MyPageState extends State<MyPage> {
                             height: screenHeight * 0.04,
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, 'buyingList');
+                                Get.toNamed('buyingList');
                               },
                               child: FittedBox(
                                 fit: BoxFit.scaleDown,

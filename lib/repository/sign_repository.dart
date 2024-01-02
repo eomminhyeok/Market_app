@@ -35,7 +35,6 @@ class SignRepository {
 
       if (response.statusCode == 200) {
         print('회원가입 성공: $message}');
-        Get.toNamed('/mainPage');
       } else if (response.statusCode == 401) {
         print('회원가입 실패: $message');
       } else {
